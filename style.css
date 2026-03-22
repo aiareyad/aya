@@ -1,0 +1,787 @@
+        /* 
+        ========================================
+        CORE VARIABLES & RESET
+        ========================================
+        */
+        :root {
+            --bg-color: #050505;
+            --text-color: #ffffff;
+            --accent-color: #FDB5C0; /* Acid Green */
+            --secondary-text: #888888;
+            --font-main: 'Helvetica Neue', sans-serif;
+            --cursor-size: 20px;
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Hide default cursor */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 
+        ========================================
+        CUSTOM CURSOR
+        ========================================
+        */
+        .cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--cursor-size);
+            height: var(--cursor-size);
+            border: 1px solid var(--text-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            border-color: transparent;
+        }
+
+        /* 
+        ========================================
+        NAVIGATION
+        ========================================
+        */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            color:#ffffff;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-icon {
+    display: none;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.menu-icon span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--accent-color, #000);
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+        /* 
+        ========================================
+        HERO SECTION
+        ========================================
+        */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 10vw, 12rem);
+            line-height: 0.9;
+            font-weight: 900;
+            overflow: hidden;
+        }
+
+        .hero h1 span {
+            display: block;
+            transform: translateY(100%);
+            animation: slideUp 0.8s forwards;
+        }
+
+        .spanspecial{
+
+            font-family: "Cormorant Garamond", serif;
+            position: relative;
+            top:-14%;
+            font-size: 100px;
+            left: 9%;
+            color: #FDB5C0;
+            outline: #050505;
+            font-style: italic;
+            filter: drop-shadow(1px 2px #1d1d1d)
+
+        }
+
+                .spam{
+
+            position: relative;
+            top:-7%;
+            color: #FDB5C0;
+
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+            margin-top: 2rem;
+            max-width: 500px;
+            opacity: 0;
+            animation: fadeIn 1s 0.5s forwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 5%;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            animation: Move 2s ease 0 infinite;
+            margin: 0 auto;
+            
+        }
+
+        @keyframes Move{
+            
+            1% { 
+
+                top:30px;
+
+            }
+
+            100%{
+
+                bottom:30px;
+            }
+
+        }
+
+        /* 
+        ========================================
+        SELECTED WORKS (Bento Grid)
+        ========================================
+        */
+.work {
+    padding: 5rem 5%;
+}
+
+.section-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+element.style{
+
+    padding: 0 !important;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.project-card {
+    position: relative;
+    background-color: #242424;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.project-card::after {
+    content: 'Click to view';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255,255,255,0.9);
+    font-size: 1rem;
+    font-weight: 500;
+    background: rgba(0,0,0,0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-card:hover::after {
+    opacity: 1;
+}
+
+.project-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+    filter: grayscale(100%);
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+.project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(transparent, rgb(19, 19, 19));
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.project-card:hover .project-info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.project-cat {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* Modal Styles - SIMPLIFIED (no text) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    width: 100%;
+    animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: #fff;
+    color: #000;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+    z-index: 10000;
+}
+
+.modal-close:hover {
+    background: var(--accent-color);
+    color: #fff;
+    transform: scale(1.1) rotate(90deg);
+}
+
+.modal-image {
+    width: 100%;
+    height: auto;
+    max-height: 95vh;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+}
+
+.modal-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+}
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: 100%;
+    animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: #fff;
+    color: #000;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+    z-index: 10000;
+}
+
+.modal-close:hover {
+    background: var(--accent-color);
+    color: #fff;
+    transform: scale(1.1) rotate(90deg);
+}
+
+.modal-image {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+}
+
+.modal-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.modal-info {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    color: #fff;
+    z-index: 10;
+}
+
+.modal-info h3 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+    line-height: 1.2;
+}
+
+.modal-info p {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .modal-info h3 {
+        font-size: 2rem;
+    }
+    
+    .modal-info p {
+        font-size: 1rem;
+    }
+}
+
+/* Add this to your existing modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Soft fade */
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    width: 100%;
+    transform: scale(1);
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Soft scale + fade */
+}
+
+.modal-overlay.closing .modal-content {
+    transform: scale(0.85);
+    opacity: 0;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: scale(0.85) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: #fff;
+    color: #000;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Soft hover */
+    z-index: 10000;
+}
+
+.modal-close:hover {
+    background: var(--accent-color);
+    color: #fff;
+    transform: scale(1.1) rotate(90deg);
+}
+
+        /* 
+        ========================================
+        MARQUEE STRIP
+        ========================================
+        */
+        .marquee {
+            background-color: var(--accent-color);
+            color: black;
+            padding: 1.5rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            transform: rotate(-2deg) scale(1.05);
+            margin: 5rem 0;
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+
+        /* 
+        ========================================
+        SERVICES & FOOTER
+        ========================================
+        */
+        .services {
+            padding: 5rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        
+
+        .service-item {
+            border-top: 1px solid #333;
+            padding: 2rem 0;
+            transition: border-color 0.3s;
+        }
+
+        .service-item span{
+
+                        font-size: 2rem;
+            margin-bottom: 1rem;
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        .service-item:hover {
+            border-color: var(--accent-color);
+        }
+
+        .service-item h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+         .contact p{
+
+            margin-bottom: 0 !important;
+         }
+
+.contact-btn {
+    display: inline-block;
+    font-size: clamp(2.5rem, 8vw, 5rem); /* Smaller min + larger vw for mobile */
+    font-weight: 900;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    line-height: 1.1; /* Better line height */
+    letter-spacing: 0.05em; /* Prevent letter squeeze */
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    white-space: nowrap; /* Prevent wrapping */
+    position: relative;
+    padding-top: 0 !important;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+    .contact-btn {
+        font-size: clamp(2rem, 12vw, 4rem); /* Bigger on small screens */
+        -webkit-text-stroke: 1.5px white; /* Thicker stroke for mobile */
+        display: block; /* Full width on mobile */
+        margin: 2rem auto; /* Center it */
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-btn {
+        font-size: clamp(1.8rem, 14vw, 3.5rem); /* Even bigger relative size */
+        -webkit-text-stroke: 2px white; /* Very thick for tiny screens */
+    }
+}
+
+/* Your existing hover styles */
+.contact-btn:hover {
+    color: white;
+    -webkit-text-stroke: 0;
+}
+
+        .contact-btn:hover {
+            color: var(--accent-color);
+            -webkit-text-stroke: 2px var(--accent-color);
+        }
+
+        footer {
+            padding: 2rem 5%;
+            border-top: 1px solid #2e2e2e;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--secondary-text);
+        }
+
+        /* 
+        ========================================
+        ANIMATIONS & UTILS
+        ========================================
+        */
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Scroll Reveal Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            
+            .hero h1 {
+            font-size: clamp(4rem, 10vw, 12rem);
+            line-height: 0.9;
+            font-weight: 900;
+            overflow: hidden;
+        }
+            
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            .services {
+                grid-template-columns: 1fr;
+            }
+            .project-card {
+                height: 400px;
+            }
+        }

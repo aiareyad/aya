@@ -1,0 +1,172 @@
+/* Keep your existing nav, logo, and desktop link styles here */
+@media (max-width: 768px) {
+.nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 250px;
+        background-color: #fff;
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 5rem;
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+        .spanspecial{
+
+            font-size: 65px;
+            margin-left: 25%;
+        }
+
+        .spann{
+
+            font-size: 80px;
+        }
+
+        .spam{
+
+            position: relative;
+            top:-7%;
+            color: #FDB5C0;
+            font-size: 45px;
+
+        }
+
+                .hero p {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            margin-top: 2rem;
+            max-width: 500px;
+            opacity: 0;
+            animation: fadeIn 1s 0.5s forwards;
+        }
+
+        .scroll-indicator {
+            opacity: 0.6;
+            color: #fff;
+            margin: 0 auto !important;
+            text-align: center;
+            padding-left: 23%;
+        }
+
+        .container{
+
+            margin: 0 30px !important;
+        }
+        .marquee {
+            background-color: var(--accent-color);
+            color: black;
+            padding: 0.5rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            transform: rotate(-2deg) scale(1.05);
+            margin: 5rem 0;
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+
+                .work {
+            padding: 0;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+        .reveal p{
+
+            font-size: 15px !important;
+        }
+
+        .service-item h3{
+
+            font-size: 23px !important;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px white;
+            transition: all 0.3s;
+        }
+
+            footer {
+            padding: 2rem 5%;
+            border-top: 1px solid #2e2e2e;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            color: var(--secondary-text);
+        }
+
+.menu-icon {
+        display: flex;
+    }
+
+    
+    .nav-links {
+        position: fixed;
+        top: 70px; /* Adjust based on your nav height */
+        right: 0;
+        width: 100%;
+        height: 15%;
+        background-color: #fdfcfc;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding-top: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        gap: 2rem;
+        z-index: 1000;
+        color:black;
+        line-height: 10px;
+        }
+    
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+
+    }
+    
+    .nav-links a {
+        font-size: 0.7rem;
+        padding: 1rem 0;
+        line-height: 0.2;
+    }
+    
+    /* Animate hamburger to X */
+    .menu-icon.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .menu-icon.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-icon.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
